@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.Viewholder>{
@@ -52,6 +53,18 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.Viewholder
     @Override
     public int getItemCount() {
         return tweets.size();
+    }
+    //Clean elements of recycler view
+    public void clear(){
+
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+        // Add a list of items
+    public void addAll(List<Tweet> tweetList){
+        tweets.addAll(tweetList);
+        notifyDataSetChanged();
     }
 
 
