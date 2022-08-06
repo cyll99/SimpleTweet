@@ -5,14 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +68,18 @@ public class TimelineActivity extends AppCompatActivity {
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(this, tweets);
 
+        adapter.setOnItemClickListener(new TweetsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int position) {
+                Intent intent= new Intent(TimelineActivity.this,DetailActivity.class);
+                Tweet tweet= tweets.get(position);
+
+                intent.putExtra("tweets", Parcels.wrap(tweet));
+
+             TimelineActivity.this.startActivity(intent);
+
+            }
+        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         // recycler view setup: layout manager and the adapter
         rvTweets.setLayoutManager(layoutManager);

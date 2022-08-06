@@ -13,10 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.Viewholder>{
+public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
 
     Context context;
     List<Tweet> tweets;
@@ -27,17 +26,32 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.Viewholder
         this.tweets = tweets;
     }
 
+    // Define listener member variable
+    private OnItemClickListener listener;
+
+    // Define the listener interface
+    public interface OnItemClickListener {
+        void onItemClick(View itemView, int position);
+    }
+
+    // Define the method that allows the parent activity or fragment to define the listener
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
-    public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_tweet, parent, false);
-        return new Viewholder(view);
+        TweetsAdapter.ViewHolder viewHolder = new TweetsAdapter.ViewHolder(view, listener);
+
+        return viewHolder;
     }
 
     // for each row inflate a layout
 
     @Override
-    public void onBindViewHolder(@NonNull Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         // get the data
 
@@ -70,17 +84,23 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.Viewholder
 
 
 
-    public class Viewholder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView ivProfileImage;
         TextView tvbody;
         TextView tvScreenName;
 
-        public Viewholder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView,final OnItemClickListener clickListener) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvbody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.onItemClick(itemView, getAdapterPosition());
+                }
+            });
 
         }
 
