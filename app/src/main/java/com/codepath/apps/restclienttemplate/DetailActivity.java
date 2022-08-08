@@ -17,6 +17,7 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView imageTweet;
     private TextView UserName;
     private TextView body;
+    private TextView screenName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class DetailActivity extends AppCompatActivity {
 
         imageTweet = findViewById(R.id.imageTweet);
         UserName = findViewById(R.id.Name);
+        screenName = findViewById(R.id.userName);
+
         body = findViewById(R.id.body);
 
 

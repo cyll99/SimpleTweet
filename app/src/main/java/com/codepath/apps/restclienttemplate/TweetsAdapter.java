@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
@@ -88,13 +89,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         ImageView ivProfileImage;
         TextView tvbody;
-        TextView tvScreenName;
+        TextView name;
+        TextView userName;
+
 
         public ViewHolder(@NonNull View itemView,final OnItemClickListener clickListener) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvbody = itemView.findViewById(R.id.tvBody);
-            tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            name = itemView.findViewById(R.id.sceenName);
+            userName = itemView.findViewById(R.id.UName);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -106,8 +111,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         public void bind(Tweet tweet) {
             tvbody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            name.setText(tweet.user.name);
+            userName.setText(tweet.user.getScreenName());
+
+            Glide.with(context).load(tweet.user.profileImageUrl)
+                    .transform(new RoundedCorners(30))
+                    .into(ivProfileImage);
         }
     }
 }
