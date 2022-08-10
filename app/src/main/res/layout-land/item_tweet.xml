@@ -6,7 +6,8 @@
     android:layout_margin="5dp"
     android:layout_marginTop="10dp"
 
-    android:id="@+id/container"
+
+android:id="@+id/container"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -43,6 +44,14 @@
         android:layout_toEndOf="@+id/sceenName"
         android:text="Marinade007" />
 
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+
+        android:layout_toEndOf="@+id/UName"
+        android:text="Marinade007" />
 
 
     <TextView

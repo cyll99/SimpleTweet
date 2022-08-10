@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_marginTop="10dp"
-
-    android:layout_margin="5dp"
     android:id="@+id/container"
-    android:layout_height="wrap_content">
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -16,7 +16,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="-1dp"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="0dp"
 
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -58,75 +58,87 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/UName"
-        android:autoLink="all"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
 
-        android:layout_marginTop="2dp"
+        android:autoLink="all"
 
         android:text="This is America!!" />
 
     <ImageView
         android:id="@+id/comment"
-        android:layout_marginStart="5dp"
-
         android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
 
+        android:layout_height="20dp"
         android:layout_below="@+id/tvBody"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+
+        android:layout_toEndOf="@+id/ivProfileImage"
 
         app:srcCompat="@drawable/comment_outline" />
 
     <ImageView
-        android:layout_marginStart="30dp"
         android:id="@+id/reply"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/comment"
-
         android:layout_below="@+id/tvBody"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+
+        android:layout_toEndOf="@+id/comment"
 
         app:srcCompat="@drawable/repeat_variant" />
 
     <ImageView
         android:id="@+id/heart"
-        android:layout_marginStart="30dp"
-
         android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/reply"
 
+        android:layout_height="20dp"
         android:layout_below="@+id/tvBody"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+
+        android:layout_toEndOf="@+id/reply"
 
         app:srcCompat="@drawable/heart_outline" />
 
+    <TextView
+        android:id="@+id/likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="15dp"
+
+        android:layout_toEndOf="@+id/heart"
+        android:text="123" />
+
     <ImageView
         android:id="@+id/share"
-        android:layout_marginStart="30dp"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
+
         android:layout_toEndOf="@+id/heart"
 
-        android:layout_below="@+id/tvBody"
-
         app:srcCompat="@drawable/share_variant_outline" />
+
 
     <View
         android:id="@+id/divider"
 
-        android:layout_marginTop="30dp"
-
         android:layout_width="match_parent"
+
         android:layout_height="1dp"
         android:layout_below="@+id/heart"
         android:layout_alignParentStart="true"
-
         android:layout_centerVertical="true"
+
+        android:layout_marginTop="30dp"
 
         android:background="?android:attr/listDivider" />
 
