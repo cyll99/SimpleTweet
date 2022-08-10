@@ -1,10 +1,12 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -27,29 +31,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         this.tweets = tweets;
     }
 
-    // Define listener member variable
-    private OnItemClickListener listener;
 
-    // Define the listener interface
-    public interface OnItemClickListener {
-        void onItemClick(View itemView, int position);
-    }
-
-    // Define the method that allows the parent activity or fragment to define the listener
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_tweet, parent, false);
-        TweetsAdapter.ViewHolder viewHolder = new TweetsAdapter.ViewHolder(view, listener);
 
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
-    // for each row inflate a layout
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -91,22 +82,24 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvbody;
         TextView name;
         TextView userName;
+        TextView date;
+
+        RelativeLayout container;
 
 
-        public ViewHolder(@NonNull View itemView,final OnItemClickListener clickListener) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvbody = itemView.findViewById(R.id.tvBody);
             name = itemView.findViewById(R.id.sceenName);
             userName = itemView.findViewById(R.id.UName);
+            container = itemView.findViewById(R.id.container);
+            date = itemView.findViewById(R.id.Date);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickListener.onItemClick(itemView, getAdapterPosition());
-                }
-            });
 
+
+
+//
         }
 
         public void bind(Tweet tweet) {
@@ -114,9 +107,23 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             name.setText(tweet.user.name);
             userName.setText(tweet.user.getScreenName());
 
+
             Glide.with(context).load(tweet.user.profileImageUrl)
-                    .transform(new RoundedCorners(30))
+                    .transform(new RoundedCorners(70))
                     .into(ivProfileImage);
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 2 Navigate on new activity on tap
+
+                    Intent i =  new Intent(context, DetailActivity.class);
+                    i.putExtra("tweets", Parcels.wrap(tweet));
+
+                    context.startActivity(i);
+
+                }
+            });
+
         }
     }
 }

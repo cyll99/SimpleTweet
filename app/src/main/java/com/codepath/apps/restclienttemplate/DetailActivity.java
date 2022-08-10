@@ -38,6 +38,8 @@ public class DetailActivity extends AppCompatActivity {
 
         body.setText(tweet.getBody());
         UserName.setText(tweet.getUser().getName());
+        screenName.setText(tweet.user.getScreenName());
+
 
 
 
