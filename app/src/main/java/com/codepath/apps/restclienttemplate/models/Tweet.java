@@ -15,19 +15,17 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
-    public int favourites_count;
+
     public long id;
+//    public Url url;
 
     public String getBody() {
         return body;
     }
 
-    public int getFavourites_count() {
-        return favourites_count;
-    }
 
     public String getCreatedAt() {
-        return TimeFormatter.getTimeDifference(createdAt);
+        return "."+TimeFormatter.getTimeDifference(createdAt);
     }
 
     public User getUser() {
@@ -46,7 +44,7 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.id = jsonObject.getLong("id");
-//        tweet.favourites_count = jsonObject.getInt("favourite_count");
+//        tweet.url =  Url.fromJson(jsonObject.getJSONObject("urls"));
 
         return tweet;
     }
