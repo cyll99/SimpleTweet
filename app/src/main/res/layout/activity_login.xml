@@ -7,6 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:fitsSystemWindows="true"
+    android:background="@color/twitBleu"
 
     tools:context=".LoginActivity" >
 
@@ -16,6 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:onClick="loginToRest"
+        android:background="@color/bleu"
         android:text="@string/login_label" />
 
 </RelativeLayout>
