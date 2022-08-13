@@ -117,7 +117,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 //            likes.setText(tweet.user.likes);
 
 //
-//            Glide.with(context).load(tweet.url.getUrlP())
+//            Glide.with(context).load(tweet.user.profileImageUrl)
 //                    .transform(new RoundedCorners(70))
 //                    .into(image);
 
