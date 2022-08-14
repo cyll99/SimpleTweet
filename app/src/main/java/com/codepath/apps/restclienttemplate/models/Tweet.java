@@ -15,6 +15,9 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public int retweet_count;
+    public int favorite_count;
+
 
     public long id;
 //    public Url url;
@@ -27,6 +30,10 @@ public class Tweet {
     public String getCreatedAt() {
         return "."+TimeFormatter.getTimeDifference(createdAt);
     }
+    public String getCreatedAt2() {
+        return "."+TimeFormatter.getTimeStamp(createdAt);
+    }
+
 
     public User getUser() {
         return user;
@@ -38,13 +45,23 @@ public class Tweet {
 
     public Tweet(){}
 
+    public int getRetweet_count() {
+        return retweet_count;
+    }
+
+    public int getFavorite_count() {
+        return favorite_count;
+    }
+
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.id = jsonObject.getLong("id");
-//        tweet.url =  Url.fromJson(jsonObject.getJSONObject("urls"));
+
+        tweet.retweet_count = jsonObject.getInt("retweet_count");
+        tweet.retweet_count = jsonObject.getInt("favorite_count");
 
         return tweet;
     }

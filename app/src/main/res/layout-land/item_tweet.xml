@@ -2,13 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+
     android:layout_width="match_parent"
-    android:layout_margin="5dp"
-    android:layout_marginTop="10dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
-
-android:id="@+id/container"
-    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -17,7 +16,7 @@ android:id="@+id/container"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="-1dp"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="0dp"
 
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -59,75 +58,95 @@ android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/UName"
-        android:autoLink="all"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
 
-        android:layout_marginTop="2dp"
+        android:autoLink="all"
 
         android:text="This is America!!" />
 
     <ImageView
-        android:id="@+id/comment"
-        android:layout_marginStart="5dp"
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivProfileImage"
 
         android:layout_below="@+id/tvBody"
 
-        app:srcCompat="@drawable/comment_outline" />
+        tools:srcCompat="@tools:sample/avatars"
 
-    <ImageView
-        android:layout_marginStart="30dp"
+        />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="25dp"
+
+        android:layout_height="25dp"
+        android:layout_below="@+id/image"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+
+        android:layout_toEndOf="@+id/ivProfileImage"
+
+        app:drawableLeftCompat="@drawable/comment_outline" />
+
+
+    <TextView
         android:id="@+id/reply"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/image"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="15dp"
+
         android:layout_toEndOf="@+id/comment"
+        app:drawableLeftCompat="@drawable/repeat_variant" />
 
-        android:layout_below="@+id/tvBody"
 
-        app:srcCompat="@drawable/repeat_variant" />
 
-    <ImageView
+    <TextView
         android:id="@+id/heart"
-        android:layout_marginStart="30dp"
+        android:layout_width="25dp"
 
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/image"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="15dp"
+
         android:layout_toEndOf="@+id/reply"
 
-        android:layout_below="@+id/tvBody"
+        app:drawableLeftCompat="@drawable/heart_outline" />
 
-        app:srcCompat="@drawable/heart_outline" />
 
-    <ImageView
+    <TextView
         android:id="@+id/share"
-        android:layout_marginStart="30dp"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/image"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="15dp"
+
         android:layout_toEndOf="@+id/heart"
+        app:drawableLeftCompat="@drawable/share_variant_outline" />
 
-        android:layout_below="@+id/tvBody"
 
-        app:srcCompat="@drawable/share_variant_outline" />
+
 
     <View
         android:id="@+id/divider"
 
-        android:layout_marginTop="30dp"
-
         android:layout_width="match_parent"
+
         android:layout_height="1dp"
         android:layout_below="@+id/heart"
         android:layout_alignParentStart="true"
-
         android:layout_centerVertical="true"
+
+        android:layout_marginTop="30dp"
 
         android:background="?android:attr/listDivider" />
 

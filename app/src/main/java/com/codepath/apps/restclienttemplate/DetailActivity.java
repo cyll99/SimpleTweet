@@ -19,6 +19,10 @@ public class DetailActivity extends AppCompatActivity {
     private TextView UserName;
     private TextView body;
     private TextView screenName;
+    private TextView retweet;
+    private TextView favorite;
+    private TextView time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,11 @@ public class DetailActivity extends AppCompatActivity {
         screenName = findViewById(R.id.userName);
 
         body = findViewById(R.id.body);
+        retweet = findViewById(R.id.retweet);
+        favorite = findViewById(R.id.favorite);
+        time = findViewById(R.id.time);
+
+
 
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
@@ -48,6 +57,10 @@ public class DetailActivity extends AppCompatActivity {
         body.setText(tweet.getBody());
         UserName.setText(tweet.getUser().getName());
         screenName.setText(tweet.user.getScreenName());
+        retweet.setText(tweet.retweet_count+" RETWEETS");
+        favorite.setText(tweet.favorite_count+" FAVORITES");
+        UserName.setText(tweet.getCreatedAt2());
+
 
 
 
