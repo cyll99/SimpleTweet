@@ -67,75 +67,139 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageTweet"
+            android:autoLink="all"
             android:layout_alignParentStart="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
             android:text="TextView" />
 
+        <TextView
 
-        <ImageView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/body"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="TextView" />
+
+
+        <View
+            android:id="@+id/divider1"
+
+            android:layout_margin="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/time"
+            android:layout_alignParentStart="true"
+
+            android:layout_centerVertical="true"
+
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+
+            android:id="@+id/favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="TextView" />
+
+        <TextView
+
+            android:id="@+id/retweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:layout_toEndOf="@+id/favorite"
+
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="TextView" />
+
+
+
+        <View
+            android:id="@+id/divider2"
+
+            android:layout_margin="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/retweet"
+            android:layout_alignParentStart="true"
+
+            android:layout_centerVertical="true"
+
+            android:background="?android:attr/listDivider" />
+
+        <TextView
             android:id="@+id/comment"
-            android:layout_marginStart="60dp"
+            android:layout_width="25dp"
 
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/divider2"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
 
-            android:layout_below="@+id/body"
 
-            app:srcCompat="@drawable/comment_outline" />
+            app:drawableLeftCompat="@drawable/comment_outline" />
 
-        <ImageView
+
+        <TextView
             android:id="@+id/reply"
-
-            android:layout_marginStart="60dp"
-
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_below="@+id/divider2"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+
             android:layout_toEndOf="@+id/comment"
+            app:drawableLeftCompat="@drawable/repeat_variant" />
 
-            android:layout_below="@+id/body"
 
-            app:srcCompat="@drawable/repeat_variant" />
 
-        <ImageView
+        <TextView
             android:id="@+id/heart"
-            android:layout_marginStart="60dp"
+            android:layout_width="25dp"
 
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/divider2"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="15dp"
+
             android:layout_toEndOf="@+id/reply"
 
-            android:layout_below="@+id/body"
+            app:drawableLeftCompat="@drawable/heart_outline" />
 
-            app:srcCompat="@drawable/heart_outline" />
 
-        <ImageView
+        <TextView
             android:id="@+id/share"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/divider2"
             android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
 
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
             android:layout_toEndOf="@+id/heart"
-
-            android:layout_below="@+id/body"
-
-            app:srcCompat="@drawable/share_variant_outline" />
+            app:drawableLeftCompat="@drawable/share_variant_outline" />
 
         <View
             android:id="@+id/divider"
 
-            android:layout_marginTop="30dp"
-
             android:layout_width="match_parent"
+
             android:layout_height="1dp"
             android:layout_below="@+id/heart"
             android:layout_alignParentStart="true"
-
             android:layout_centerVertical="true"
+
+            android:layout_marginTop="15dp"
 
             android:background="?android:attr/listDivider" />
 

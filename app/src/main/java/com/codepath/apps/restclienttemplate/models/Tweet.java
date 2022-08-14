@@ -14,13 +14,13 @@ import java.util.List;
 public class Tweet {
     public String body;
     public String createdAt;
-    public User user;
+    public UserM user;
     public int retweet_count;
     public int favorite_count;
 
 
     public long id;
-//    public Url url;
+//    public Organization url;
 
     public String getBody() {
         return body;
@@ -35,7 +35,7 @@ public class Tweet {
     }
 
 
-    public User getUser() {
+    public UserM getUser() {
         return user;
     }
 
@@ -57,7 +57,7 @@ public class Tweet {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
-        tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.user = UserM.fromJson(jsonObject.getJSONObject("user"));
         tweet.id = jsonObject.getLong("id");
 
         tweet.retweet_count = jsonObject.getInt("retweet_count");
