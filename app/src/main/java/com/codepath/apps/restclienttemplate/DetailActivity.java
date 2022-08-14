@@ -59,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
         screenName.setText(tweet.user.getScreenName());
         retweet.setText(tweet.retweet_count+" RETWEETS");
         favorite.setText(tweet.favorite_count+" FAVORITES");
-        UserName.setText(tweet.getCreatedAt2());
+        time.setText(tweet.getCreatedAt2());
 
 
 
