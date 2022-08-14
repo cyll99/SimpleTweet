@@ -71,11 +71,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:layout_below="@+id/tvBody"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
 
-        android:layout_below="@+id/tvBody"
+        android:layout_toEndOf="@+id/ivProfileImage"
 
         tools:srcCompat="@tools:sample/avatars"
 
@@ -83,53 +83,57 @@
 
     <TextView
         android:id="@+id/comment"
-        android:layout_width="25dp"
+        android:layout_width="wrap_content"
 
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/image"
         android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
 
         android:layout_toEndOf="@+id/ivProfileImage"
+        android:drawablePadding="5dp"
 
-        app:drawableLeftCompat="@drawable/comment_outline" />
+        app:drawableLeftCompat="@drawable/comment_outline"
+        />
 
 
     <TextView
         android:id="@+id/reply"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/image"
         android:layout_marginStart="60dp"
         android:layout_marginTop="15dp"
-
         android:layout_toEndOf="@+id/comment"
+        android:drawablePadding="5dp"
+        android:text="5"
         app:drawableLeftCompat="@drawable/repeat_variant" />
-
 
 
     <TextView
         android:id="@+id/heart"
-        android:layout_width="25dp"
+        android:layout_width="wrap_content"
 
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/image"
         android:layout_marginStart="60dp"
         android:layout_marginTop="15dp"
+        android:drawablePadding="5dp"
 
         android:layout_toEndOf="@+id/reply"
+        android:text="5"
 
         app:drawableLeftCompat="@drawable/heart_outline" />
 
 
     <TextView
         android:id="@+id/share"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/image"
         android:layout_marginStart="60dp"
         android:layout_marginTop="15dp"
-
+        android:drawablePadding="5dp"
         android:layout_toEndOf="@+id/heart"
         app:drawableLeftCompat="@drawable/share_variant_outline" />
 

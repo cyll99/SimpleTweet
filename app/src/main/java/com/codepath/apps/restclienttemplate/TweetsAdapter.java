@@ -83,7 +83,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView name;
         TextView userName;
         TextView date;
-        TextView likes;
+        TextView favorites;
+        TextView retweets;
         ImageView image;
 
 
@@ -98,7 +99,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             userName = itemView.findViewById(R.id.UName);
             container = itemView.findViewById(R.id.container);
             date = itemView.findViewById(R.id.Date);
-//            likes = itemView.findViewById(R.id.likes);
+            favorites = itemView.findViewById(R.id.heart);
+            retweets = itemView.findViewById(R.id.reply);
             image = itemView.findViewById(R.id.image);
 
 
@@ -106,7 +108,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
 
-//
+
         }
 
         public void bind(Tweet tweet) {
@@ -114,8 +116,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             name.setText(tweet.user.name);
             userName.setText(tweet.user.getScreenName());
             date.setText(tweet.getCreatedAt());
-//            likes.setText(tweet.user.likes);
-
+//            retweets.setText(tweet.retweet_count);
+//            favorites.setText(tweet.favorite_count);
 //
 //            Glide.with(context).load(tweet.user.profileImageUrl)
 //                    .transform(new RoundedCorners(70))
