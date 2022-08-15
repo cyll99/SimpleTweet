@@ -116,8 +116,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             name.setText(tweet.user.name);
             userName.setText(tweet.user.getScreenName());
             date.setText(tweet.getCreatedAt());
-//            retweets.setText(tweet.retweet_count);
-//            favorites.setText(tweet.favorite_count);
+            retweets.setText(tweet.retweet_count);
+            favorites.setText(tweet.favorite_count);
 //
 //            Glide.with(context).load(tweet.user.profileImageUrl)
 //                    .transform(new RoundedCorners(70))

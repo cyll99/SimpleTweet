@@ -106,7 +106,7 @@
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/comment"
         android:drawablePadding="5dp"
-        android:text="5"
+        tools:text="5"
         app:drawableLeftCompat="@drawable/repeat_variant" />
 
 
@@ -121,7 +121,7 @@
         android:drawablePadding="5dp"
 
         android:layout_toEndOf="@+id/reply"
-        android:text="5"
+        tools:text="5"
 
         app:drawableLeftCompat="@drawable/heart_outline" />
 

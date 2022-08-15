@@ -15,8 +15,8 @@ public class Tweet {
     public String body;
     public String createdAt;
     public UserM user;
-    public int retweet_count;
-    public int favorite_count;
+    public String retweet_count;
+    public String favorite_count;
 
 
     public long id;
@@ -45,11 +45,11 @@ public class Tweet {
 
     public Tweet(){}
 
-    public int getRetweet_count() {
+    public String getRetweet_count() {
         return retweet_count;
     }
 
-    public int getFavorite_count() {
+    public String getFavorite_count() {
         return favorite_count;
     }
 
@@ -60,8 +60,8 @@ public class Tweet {
         tweet.user = UserM.fromJson(jsonObject.getJSONObject("user"));
         tweet.id = jsonObject.getLong("id");
 
-        tweet.retweet_count = jsonObject.getInt("retweet_count");
-        tweet.retweet_count = jsonObject.getInt("favorite_count");
+        tweet.retweet_count = jsonObject.getString("retweet_count");
+        tweet.favorite_count = jsonObject.getString("favorite_count");
 
         return tweet;
     }
