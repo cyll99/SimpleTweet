@@ -116,16 +116,36 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             name.setText(tweet.user.name);
             userName.setText(tweet.user.getScreenName());
             date.setText(tweet.getCreatedAt());
-            retweets.setText(tweet.retweet_count);
-            favorites.setText(tweet.favorite_count);
-//
-//            Glide.with(context).load(tweet.user.profileImageUrl)
-//                    .transform(new RoundedCorners(70))
-//                    .into(image);
+            retweets.setText(tweet.getRetweet_count());
+            favorites.setText(tweet.getFavorite_count());
+
 
             Glide.with(context).load(tweet.user.profileImageUrl)
                     .transform(new RoundedCorners(70))
                     .into(ivProfileImage);
+
+            retweets.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                if(!tweet.favorited) {
+                    tweet.retweet_count++;
+                }
+                else{
+                    tweet.retweet_count--;
+                }
+                    retweets.setText(tweet.getRetweet_count());
+                }
+            });
+
+            favorites.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    tweet.favorite_count++;
+                    favorites.setText(tweet.getFavorite_count());
+
+                }
+            });
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
