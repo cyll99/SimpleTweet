@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ public class DetailActivity extends AppCompatActivity {
     private TextView screenName;
     private TextView retweet;
     private TextView favorite;
+    private TextView retweets;
+    private TextView favorites;
     private TextView time;
 
 
@@ -46,6 +49,9 @@ public class DetailActivity extends AppCompatActivity {
         body = findViewById(R.id.body);
         retweet = findViewById(R.id.retweet);
         favorite = findViewById(R.id.favorite);
+
+        retweets = findViewById(R.id.reply);
+        favorites = findViewById(R.id.heart);
         time = findViewById(R.id.time);
 
 
@@ -59,12 +65,46 @@ public class DetailActivity extends AppCompatActivity {
         screenName.setText(tweet.user.getScreenName());
         retweet.setText(tweet.getRetweet_count()+" RETWEETS");
         favorite.setText(tweet.getFavorite_count()+" FAVORITES");
+
+        retweets.setText(tweet.getRetweet_count());
+        favorites.setText(tweet.getFavorite_count());
         time.setText(tweet.getCreatedAt2());
 
 
 
 
+        retweets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(tweet.retweet_count == tweet.initialRetweet) {
+                    tweet.retweet_count++;
+                }
+                else{
+                    tweet.retweet_count--;
+                }
+                retweets.setText(tweet.getRetweet_count());
+                retweet.setText(tweet.getRetweet_count()+" RETWEETS");
 
+            }
+        });
+
+        favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(tweet.favorite_count == tweet.initialFavorite) {
+                    tweet.favorite_count++;
+                }
+                else{
+                    tweet.favorite_count--;
+                }
+                favorites.setText(tweet.getFavorite_count());
+                favorite.setText(tweet.getFavorite_count()+" FAVORITES");
+
+
+
+            }
+        });
 
 
 

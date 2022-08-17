@@ -17,8 +17,10 @@ public class Tweet {
     public UserM user;
     public int retweet_count;
     public int favorite_count;
-    public boolean favorited;
-    boolean retweeted;
+
+    public int initialRetweet;
+    public int initialFavorite;
+    public Entities entities;
 
 
     public long id;
@@ -55,9 +57,6 @@ public class Tweet {
         return String.valueOf( favorite_count);
     }
 
-    public boolean isFavorited() {
-        return favorited;
-    }
 
 
 
@@ -67,12 +66,16 @@ public class Tweet {
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = UserM.fromJson(jsonObject.getJSONObject("user"));
+        tweet.entities = Entities.fromJson(jsonObject.getJSONObject("entities"));
+
         tweet.id = jsonObject.getLong("id");
 
         tweet.retweet_count = jsonObject.getInt("retweet_count");
         tweet.favorite_count = jsonObject.getInt("favorite_count");
-        tweet.favorited = jsonObject.getBoolean("favorited");
-        tweet.retweeted = jsonObject.getBoolean("retweeted");
+
+        tweet.initialRetweet = jsonObject.getInt("retweet_count");
+        tweet.initialFavorite = jsonObject.getInt("favorite_count");
+
 
         return tweet;
     }

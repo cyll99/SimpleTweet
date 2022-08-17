@@ -69,17 +69,13 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="150dp"
         android:layout_below="@+id/tvBody"
-        android:layout_marginStart="5dp"
+
+        android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
-
         android:layout_toEndOf="@+id/ivProfileImage"
-
-        tools:srcCompat="@tools:sample/avatars"
-
-        />
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/comment"
@@ -88,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/image"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
 
         android:layout_toEndOf="@+id/ivProfileImage"
         android:drawablePadding="5dp"
@@ -103,11 +99,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/image"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/comment"
         android:drawablePadding="5dp"
-        tools:text="5"
-        app:drawableLeftCompat="@drawable/repeat_variant" />
+        app:drawableLeftCompat="@drawable/repeat_variant"
+        tools:text="5" />
 
 
     <TextView
@@ -117,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/image"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:drawablePadding="5dp"
 
         android:layout_toEndOf="@+id/reply"
@@ -132,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/image"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:drawablePadding="5dp"
         android:layout_toEndOf="@+id/heart"
         app:drawableLeftCompat="@drawable/share_variant_outline" />

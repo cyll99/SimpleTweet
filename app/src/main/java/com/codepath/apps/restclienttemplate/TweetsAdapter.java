@@ -124,10 +124,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     .transform(new RoundedCorners(70))
                     .into(ivProfileImage);
 
+            if(!tweet.entities.getDisplay_url().isEmpty()){
+            Glide.with(context).load(tweet.entities.getDisplay_url())
+                    .transform(new RoundedCorners(20))
+                    .into(image);}
+
+
+
             retweets.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                if(!tweet.favorited) {
+                if(tweet.retweet_count == tweet.initialRetweet) {
                     tweet.retweet_count++;
                 }
                 else{
@@ -141,8 +148,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 @Override
                 public void onClick(View view) {
 
-                    tweet.favorite_count++;
+                    if(tweet.favorite_count == tweet.initialFavorite) {
+                        tweet.favorite_count++;
+                    }
+                    else{
+                        tweet.favorite_count--;
+                    }
                     favorites.setText(tweet.getFavorite_count());
+
 
                 }
             });

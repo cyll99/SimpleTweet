@@ -88,8 +88,6 @@
         <View
             android:id="@+id/divider1"
 
-            android:layout_margin="10dp"
-
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/time"
@@ -97,6 +95,10 @@
 
             android:layout_centerVertical="true"
 
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="?android:attr/listDivider" />
 
         <TextView
@@ -116,10 +118,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/divider1"
-            android:layout_toEndOf="@+id/favorite"
-
             android:layout_marginStart="10dp"
+
             android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/favorite"
             android:text="TextView" />
 
 
@@ -147,6 +149,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
 
+            android:drawablePadding="5dp"
 
             app:drawableLeftCompat="@drawable/comment_outline" />
 
@@ -158,10 +161,11 @@
             android:layout_below="@+id/divider2"
             android:layout_marginStart="60dp"
             android:layout_marginTop="10dp"
-
             android:layout_toEndOf="@+id/comment"
-            app:drawableLeftCompat="@drawable/repeat_variant" />
+            android:drawablePadding="5dp"
 
+            app:drawableLeftCompat="@drawable/repeat_variant"
+            tools:text="5" />
 
 
         <TextView
@@ -172,10 +176,11 @@
             android:layout_below="@+id/divider2"
             android:layout_marginStart="60dp"
             android:layout_marginTop="15dp"
+            android:drawablePadding="5dp"
 
             android:layout_toEndOf="@+id/reply"
-
-            app:drawableLeftCompat="@drawable/heart_outline" />
+            app:drawableLeftCompat="@drawable/heart_outline"
+            tools:text="5" />
 
 
         <TextView
@@ -185,6 +190,7 @@
             android:layout_below="@+id/divider2"
             android:layout_marginStart="60dp"
             android:layout_marginTop="10dp"
+            android:drawablePadding="5dp"
 
             android:layout_toEndOf="@+id/heart"
             app:drawableLeftCompat="@drawable/share_variant_outline" />
