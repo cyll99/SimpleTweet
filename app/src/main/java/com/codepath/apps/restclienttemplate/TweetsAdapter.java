@@ -85,6 +85,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView date;
         TextView favorites;
         TextView retweets;
+        TextView favoritesRed;
         ImageView image;
 
 
@@ -103,6 +104,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             retweets = itemView.findViewById(R.id.reply);
             image = itemView.findViewById(R.id.image);
 
+            favoritesRed = itemView.findViewById(R.id.heart_red);
+
 
 
 
@@ -118,6 +121,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             date.setText(tweet.getCreatedAt());
             retweets.setText(tweet.getRetweet_count());
             favorites.setText(tweet.getFavorite_count());
+
+            favoritesRed.setText(tweet.getFavorite_count());
+
+            if(tweet.favorite_count == tweet.initialFavorite){
+                favorites.setVisibility(View.VISIBLE);
+                favoritesRed.setVisibility(View.INVISIBLE);
+            }else{
+                favorites.setVisibility(View.INVISIBLE);
+                favoritesRed.setVisibility(View.VISIBLE);
+            }
 
 
             Glide.with(context).load(tweet.user.profileImageUrl)
@@ -148,17 +161,33 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 @Override
                 public void onClick(View view) {
 
-                    if(tweet.favorite_count == tweet.initialFavorite) {
                         tweet.favorite_count++;
-                    }
-                    else{
-                        tweet.favorite_count--;
-                    }
+                        favorites.setVisibility(View.INVISIBLE);
+                        favoritesRed.setVisibility(View.VISIBLE);
+                        favoritesRed.setText(tweet.getFavorite_count());
+
+
+
+                }
+
+
+            });
+
+            favoritesRed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    tweet.favorite_count--;
+                    favorites.setVisibility(View.VISIBLE);
+                    favoritesRed.setVisibility(View.INVISIBLE);
                     favorites.setText(tweet.getFavorite_count());
 
 
                 }
+
+
             });
+
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -25,6 +25,8 @@ public class DetailActivity extends AppCompatActivity {
     private TextView retweets;
     private TextView favorites;
     private TextView time;
+    TextView favoritesRed;
+
 
 
     @Override
@@ -55,6 +57,7 @@ public class DetailActivity extends AppCompatActivity {
         time = findViewById(R.id.time);
 
 
+        favoritesRed = findViewById(R.id.heart_red);
 
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
@@ -70,8 +73,15 @@ public class DetailActivity extends AppCompatActivity {
         favorites.setText(tweet.getFavorite_count());
         time.setText(tweet.getCreatedAt2());
 
+        favoritesRed.setText(tweet.getFavorite_count());
 
-
+        if(tweet.favorite_count == tweet.initialFavorite){
+            favorites.setVisibility(View.VISIBLE);
+            favoritesRed.setVisibility(View.INVISIBLE);
+        }else{
+            favorites.setVisibility(View.INVISIBLE);
+            favoritesRed.setVisibility(View.VISIBLE);
+        }
 
         retweets.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,18 +102,33 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(tweet.favorite_count == tweet.initialFavorite) {
-                    tweet.favorite_count++;
-                }
-                else{
-                    tweet.favorite_count--;
-                }
-                favorites.setText(tweet.getFavorite_count());
+                tweet.favorite_count++;
+                favorites.setVisibility(View.INVISIBLE);
+                favoritesRed.setVisibility(View.VISIBLE);
+                favoritesRed.setText(tweet.getFavorite_count());
                 favorite.setText(tweet.getFavorite_count()+" FAVORITES");
 
 
 
             }
+
+
+        });
+
+        favoritesRed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tweet.favorite_count--;
+                favorites.setVisibility(View.VISIBLE);
+                favoritesRed.setVisibility(View.INVISIBLE);
+                favorites.setText(tweet.getFavorite_count());
+                favorite.setText(tweet.getFavorite_count()+" FAVORITES");
+
+
+            }
+
+
         });
 
 
