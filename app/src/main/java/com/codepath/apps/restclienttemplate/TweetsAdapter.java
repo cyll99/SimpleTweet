@@ -15,6 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.volokh.danylo.video_player_manager.manager.PlayerItemChangeListener;
+import com.volokh.danylo.video_player_manager.manager.SingleVideoPlayerManager;
+import com.volokh.danylo.video_player_manager.manager.VideoPlayerManager;
+import com.volokh.danylo.video_player_manager.meta.MetaData;
+import com.volokh.danylo.video_player_manager.ui.SimpleMainThreadMediaPlayerListener;
+import com.volokh.danylo.video_player_manager.ui.VideoPlayerView;
 
 import org.parceler.Parcels;
 
@@ -87,6 +93,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView retweets;
         TextView favoritesRed;
         ImageView image;
+        VideoPlayerView mVideoPlayer_1;
+        ImageView mVideoCover;
 
 
         RelativeLayout container;
@@ -106,12 +114,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             favoritesRed = itemView.findViewById(R.id.heart_red);
 
-
-
-
-
-
-
+            mVideoPlayer_1 = itemView.findViewById(R.id.video_player_1);
+            mVideoCover = itemView.findViewById(R.id.video_cover_1);
         }
 
         public void bind(Tweet tweet) {
@@ -197,10 +201,45 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     i.putExtra("tweets", Parcels.wrap(tweet));
 
                     context.startActivity(i);
-
                 }
             });
 
+
+            if(!tweet.extendedEntities.url.isEmpty()){
+                mVideoPlayer_1.setVisibility(View.VISIBLE);
+                VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
+                    @Override
+                    public void onPlayerItemChanged(MetaData metaData) {
+
+                    }
+                });
+
+
+                mVideoPlayer_1.addMediaPlayerListener(new SimpleMainThreadMediaPlayerListener(){
+                    @Override
+                    public void onVideoPreparedMainThread() {
+                        // We hide the cover when video is prepared. Playback is about to start
+                        mVideoCover.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onVideoStoppedMainThread() {
+                        // We show the cover when video is stopped
+                        mVideoCover.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onVideoCompletionMainThread() {
+                        // We show the cover when video is completed
+                        mVideoCover.setVisibility(View.VISIBLE);
+                    }
+                });
+
+
+
+                  mVideoPlayerManager.playNewVideo(null, mVideoPlayer_1, tweet.extendedEntities.url);
+
+            }
         }
     }
 }

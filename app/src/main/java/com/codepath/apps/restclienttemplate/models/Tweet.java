@@ -21,6 +21,7 @@ public class Tweet {
     public int initialRetweet;
     public int initialFavorite;
     public Entities entities;
+    public ExtendedEntities extendedEntities;
 
 
     public long id;
@@ -76,6 +77,14 @@ public class Tweet {
         tweet.initialRetweet = jsonObject.getInt("retweet_count");
         tweet.initialFavorite = jsonObject.getInt("favorite_count");
 
+        if (jsonObject.has("extended_entities")){
+            tweet.extendedEntities = ExtendedEntities.fromJson(jsonObject.getJSONObject("extended_entities"));
+
+        }else{
+            tweet.extendedEntities = new ExtendedEntities();
+            tweet.extendedEntities.url = "";
+            tweet.extendedEntities.type = "";
+        }
 
         return tweet;
     }

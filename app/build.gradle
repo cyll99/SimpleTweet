@@ -73,4 +73,8 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
 
+    // for video
+    compile 'com.github.danylovolokh:video-player-manager:0.2.0'
+
+
 }

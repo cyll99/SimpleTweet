@@ -185,7 +185,8 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent = new Intent(DetailActivity.this, TimelineActivity.class);
-        startActivity(intent);
-        return super.onOptionsItemSelected(item);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityIfNeeded(intent, 0);
+        return true;
     }
 }
