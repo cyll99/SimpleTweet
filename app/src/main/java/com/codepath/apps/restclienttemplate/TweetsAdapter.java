@@ -128,7 +128,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             favoritesRed.setText(tweet.getFavorite_count());
 
-            if(tweet.favorite_count == tweet.initialFavorite){
+            if(!tweet.favorited){
                 favorites.setVisibility(View.VISIBLE);
                 favoritesRed.setVisibility(View.INVISIBLE);
             }else{
@@ -153,6 +153,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 public void onClick(View view) {
                 if(tweet.retweet_count == tweet.initialRetweet) {
                     tweet.retweet_count++;
+
                 }
                 else{
                     tweet.retweet_count--;
@@ -169,6 +170,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                         favorites.setVisibility(View.INVISIBLE);
                         favoritesRed.setVisibility(View.VISIBLE);
                         favoritesRed.setText(tweet.getFavorite_count());
+                        tweet.favorited = true;
 
 
 
@@ -185,6 +187,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     favorites.setVisibility(View.VISIBLE);
                     favoritesRed.setVisibility(View.INVISIBLE);
                     favorites.setText(tweet.getFavorite_count());
+                    tweet.favorited = false;
 
 
                 }

@@ -26,7 +26,7 @@ public class SampleModel {
 	private String name;
 	private String body;
 	private String createdAt;
-//	private UserM user;
+//	private User user;
 	private int retweet_count;
 	private int favorite_count;
 	private boolean favorited;
@@ -68,7 +68,7 @@ public class SampleModel {
 		return createdAt;
 	}
 
-//	public UserM getUser() {
+//	public User getUser() {
 //		return user;
 //	}
 
@@ -105,7 +105,7 @@ public class SampleModel {
 		this.createdAt = createdAt;
 	}
 
-//	public void setUser(UserM user) {
+//	public void setUser(User user) {
 //		this.user = user;
 //	}
 

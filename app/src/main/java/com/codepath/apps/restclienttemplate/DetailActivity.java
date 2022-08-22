@@ -87,7 +87,7 @@ public class DetailActivity extends AppCompatActivity {
 
         favoritesRed.setText(tweet.getFavorite_count());
 
-        if(tweet.favorite_count == tweet.initialFavorite){
+        if(!tweet.favorited){
             favorites.setVisibility(View.VISIBLE);
             favoritesRed.setVisibility(View.INVISIBLE);
         }else{
@@ -119,6 +119,8 @@ public class DetailActivity extends AppCompatActivity {
                 favoritesRed.setVisibility(View.VISIBLE);
                 favoritesRed.setText(tweet.getFavorite_count());
                 favorite.setText(tweet.getFavorite_count()+" FAVORITES");
+                tweet.favorited = true;
+
 
 
 
@@ -136,6 +138,7 @@ public class DetailActivity extends AppCompatActivity {
                 favoritesRed.setVisibility(View.INVISIBLE);
                 favorites.setText(tweet.getFavorite_count());
                 favorite.setText(tweet.getFavorite_count()+" FAVORITES");
+                tweet.favorited = false;
 
 
             }

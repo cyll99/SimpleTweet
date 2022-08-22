@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import androidx.room.Entity;
+
 import com.codepath.apps.restclienttemplate.TimeFormatter;
 
 import org.json.JSONArray;
@@ -10,16 +12,19 @@ import org.parceler.Parcel;
 import java.util.ArrayList;
 import java.util.List;
 @Parcel
+@Entity
 
 public class Tweet {
     public String body;
     public String createdAt;
-    public UserM user;
+    public User user;
     public int retweet_count;
     public int favorite_count;
 
-    public int initialRetweet;
-    public int initialFavorite;
+    public boolean tweeted;
+    public boolean favorited;
+
+
     public Entities entities;
     public ExtendedEntities extendedEntities;
 
@@ -40,7 +45,7 @@ public class Tweet {
     }
 
 
-    public UserM getUser() {
+    public User getUser() {
         return user;
     }
 
@@ -66,7 +71,7 @@ public class Tweet {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
-        tweet.user = UserM.fromJson(jsonObject.getJSONObject("user"));
+        tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.entities = Entities.fromJson(jsonObject.getJSONObject("entities"));
 
         tweet.id = jsonObject.getLong("id");
@@ -74,8 +79,9 @@ public class Tweet {
         tweet.retweet_count = jsonObject.getInt("retweet_count");
         tweet.favorite_count = jsonObject.getInt("favorite_count");
 
-        tweet.initialRetweet = jsonObject.getInt("retweet_count");
-        tweet.initialFavorite = jsonObject.getInt("favorite_count");
+        tweet.tweeted = jsonObject.getBoolean("retweeted");
+        tweet.favorited = jsonObject.getBoolean("favorited");
+
 
         if (jsonObject.has("extended_entities")){
             tweet.extendedEntities = ExtendedEntities.fromJson(jsonObject.getJSONObject("extended_entities"));
