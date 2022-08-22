@@ -38,30 +38,6 @@ public class DetailActivity extends AppCompatActivity {
 
 
 
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        MenuItem actionViewItem = menu.findItem(R.id.miActionButton);
-//
-//        // Retrieve the action-view from menu
-//
-//        // Find the button within action-view
-//        Button b = findViewById(R.id.miActionButton);
-//
-//        b.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Handle button click here
-//
-//
-////                Intent i =  new Intent(DetailActivity.this, TimelineActivity.class);
-//////                i.putExtra("tweets", Parcels.wrap(tweet));
-////
-////                DetailActivity.this.startActivity(i);
-//            }
-//        });
-//
-//        return super.onPrepareOptionsMenu(menu);
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

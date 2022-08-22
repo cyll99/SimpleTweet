@@ -174,7 +174,7 @@
             android:layout_toEndOf="@+id/comment"
 
             app:drawableLeftCompat="@drawable/repeat_variant"
-            tools:text="5" />
+            />
 
 
         <TextView
@@ -187,7 +187,7 @@
             android:layout_toEndOf="@+id/reply"
 
             app:drawableLeftCompat="@drawable/heart_outline"
-            tools:text="5" />
+            />
 
         <TextView
             android:id="@+id/heart_red"
@@ -198,9 +198,7 @@
             android:layout_marginTop="15dp"
             android:layout_toEndOf="@+id/reply"
 
-            app:drawableLeftCompat="@drawable/ic_heart"
-            tools:text="5" />
-
+            app:drawableLeftCompat="@drawable/ic_heart" />
 
 
         <TextView

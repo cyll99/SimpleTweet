@@ -2,17 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".TimelineActivity">
 
-    <item android:id="@+id/action_search"
+    <item android:id="@+id/compose"
 
         android:orderInCategory="5"
 
-        android:title="Search"
+        android:title="compose"
 
         android:icon="@drawable/ic_add_tweet"
 
-        app:showAsAction="always|collapseActionView"
+        app:showAsAction="always"/>
 
-        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+<!--        app:actionViewClass="androidx.appcompat.widget.SearchView" />-->
 
 
 </menu>
