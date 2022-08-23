@@ -151,7 +151,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             retweets.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                if(tweet.retweet_count == tweet.initialRetweet) {
+                if(!tweet.tweeted) {
                     tweet.retweet_count++;
 
                 }

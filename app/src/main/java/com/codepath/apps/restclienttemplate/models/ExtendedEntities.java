@@ -1,5 +1,8 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,9 +12,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 @Parcel
+@Entity
 public class ExtendedEntities {
 
-    public String url, type;
+    @ColumnInfo
+    public String url;
+
+    @ColumnInfo
+    String type;
 
     public ExtendedEntities(){}
 

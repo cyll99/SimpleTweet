@@ -1,14 +1,27 @@
 package com.codepath.apps.restclienttemplate.models;
 
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
 @Parcel
+@Entity
 public class Entities {
-    String display_url, type;
+    @ColumnInfo
+    public String display_url;
+
+    @ColumnInfo
+    public String type;
+
+    @PrimaryKey
+    @ColumnInfo
+    public Long id_photo;
 
     public Entities(){}
 
@@ -26,6 +39,8 @@ public class Entities {
         if (jsonObject.has("media")){
             final JSONArray media_Array = jsonObject.getJSONArray("media");
             entities.display_url = media_Array.getJSONObject(0).getString("media_url_https");
+            entities.id_photo = media_Array.getJSONObject(0).getLong("id");
+
         }else {
             entities.display_url="";
         }

@@ -1,6 +1,10 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import com.codepath.apps.restclienttemplate.TimeFormatter;
 
@@ -12,23 +16,41 @@ import org.parceler.Parcel;
 import java.util.ArrayList;
 import java.util.List;
 @Parcel
-@Entity
+@Entity(foreignKeys = @ForeignKey(entity=User.class, parentColumns="id", childColumns="userId"))
 
 public class Tweet {
+    @ColumnInfo
     public String body;
+
+    @ColumnInfo
     public String createdAt;
+
+    @Ignore
     public User user;
+
+    @ColumnInfo
+    public  long userId;
+
+    @ColumnInfo
     public int retweet_count;
+
+    @ColumnInfo
     public int favorite_count;
 
+    @ColumnInfo
     public boolean tweeted;
+
+    @ColumnInfo
     public boolean favorited;
 
-
+    @Ignore
     public Entities entities;
+
+    @Ignore
     public ExtendedEntities extendedEntities;
 
-
+    @ColumnInfo
+    @PrimaryKey
     public long id;
 //    public Organization url;
 
@@ -71,7 +93,10 @@ public class Tweet {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
-        tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        User user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.userId = user.id;
+        tweet.user = user;
+
         tweet.entities = Entities.fromJson(jsonObject.getJSONObject("entities"));
 
         tweet.id = jsonObject.getLong("id");
