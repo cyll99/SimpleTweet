@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -46,26 +47,6 @@ public class TimelineActivity extends AppCompatActivity {
     EndlessRecyclerViewScrollListener scrollListener;
     TweetDao tweetDao;
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu, menu);
-//        MenuItem searchItem = menu.findItem(R.id.compose);
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if(item.getItemId() == R.id.compose){
-//            // compose item has been selected
-//             //navigate
-//            Intent intent = new Intent(this, ComposeActivity.class);
-//            startActivityForResult(intent, REQUEST_CODE);
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -83,7 +64,6 @@ public class TimelineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-
         FloatingActionButton floatingBtn;
 
         floatingBtn = findViewById(R.id.floatingBut);
@@ -142,8 +122,10 @@ public class TimelineActivity extends AppCompatActivity {
         floatingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TimelineActivity.this, ComposeActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
+//                Intent intent = new Intent(TimelineActivity.this, ComposeActivity.class);
+//                startActivityForResult(intent, REQUEST_CODE);
+                showEditDialog();
+
 
             }
         });
@@ -171,6 +153,17 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
         populateHomeTimeline();
+    }
+
+    private <MyParentFragment> void showEditDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        ComposeDialogFragment editNameDialogFragment = ComposeDialogFragment.newInstance("Some Title");
+        editNameDialogFragment.show(fm, "fragment_edit_name");
+
+//        // SETS the target fragment for use later when sending results
+//        editNameDialogFragment.setTargetFragment(MyParentFragment.this, 300);
+//        editNameDialogFragment.show(fm, "fragment_edit_name");
+
     }
 
     private  void loadMoreData() {
