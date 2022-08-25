@@ -94,6 +94,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView favorites;
         TextView retweets;
         TextView favoritesRed;
+        TextView comment;
         ImageView image;
         VideoPlayerView mVideoPlayer_1;
         ImageView mVideoCover;
@@ -113,6 +114,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             favorites = itemView.findViewById(R.id.heart);
             retweets = itemView.findViewById(R.id.reply);
             image = itemView.findViewById(R.id.image);
+            comment = itemView.findViewById(R.id.comment);
 
             favoritesRed = itemView.findViewById(R.id.heart_red);
 
@@ -150,12 +152,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
 
-            retweets.setOnClickListener(new View.OnClickListener() {
+
+            comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
-                    showEditDialog();                }
+                    showEditDialog();
+                }
             });
 
             favorites.setOnClickListener(new View.OnClickListener() {

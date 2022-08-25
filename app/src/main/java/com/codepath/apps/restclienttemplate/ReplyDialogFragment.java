@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ public class ReplyDialogFragment extends DialogFragment {
     Button btnTweet;
     TwitterClient client;
     Context context;
+    ImageButton cancel;
 
 
     public static final int MAX_LINES = 140;
@@ -61,6 +63,7 @@ public class ReplyDialogFragment extends DialogFragment {
 
         mEditText = (EditText) view.findViewById(R.id.etCompose);
         btnTweet = view.findViewById(R.id.btnTweet);
+        cancel = view.findViewById(R.id.btnCancel);
         client = TwitterApp.getRestClient(context);
 
 
@@ -69,9 +72,16 @@ public class ReplyDialogFragment extends DialogFragment {
         getDialog().setTitle(title);
         // Show soft keyboard automatically and request focus to field
         mEditText.requestFocus();
-        getDialog().getWindow().setLayout(300, 500);
+        getDialog().getWindow().setLayout(1000, 1500);
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,8 +103,7 @@ public class ReplyDialogFragment extends DialogFragment {
                             Log.i(TAG,"published tweet is : " + tweet.body);
                             Intent intent = new Intent();
                             intent.putExtra("tweet", Parcels.wrap(tweet));
-//                            setResult(RESULT_OK, intent);
-//                            finish();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
