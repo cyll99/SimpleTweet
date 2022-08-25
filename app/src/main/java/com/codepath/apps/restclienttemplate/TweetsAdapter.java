@@ -10,6 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -151,15 +153,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             retweets.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                if(!tweet.tweeted) {
-                    tweet.retweet_count++;
 
-                }
-                else{
-                    tweet.retweet_count--;
-                }
-                    retweets.setText(tweet.getRetweet_count());
-                }
+
+                    showEditDialog();                }
             });
 
             favorites.setOnClickListener(new View.OnClickListener() {
@@ -244,5 +240,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             }
         }
+
+        private void showEditDialog() {
+            FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
+            ReplyDialogFragment editNameDialogFragment = ReplyDialogFragment.newInstance("Some Title");
+            editNameDialogFragment.show(fm, "fragment_edit_name");
+        }
+
+
     }
 }

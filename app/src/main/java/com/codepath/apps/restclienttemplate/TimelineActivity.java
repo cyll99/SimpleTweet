@@ -72,7 +72,7 @@ public class TimelineActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         getSupportActionBar().setLogo(R.drawable.ic_twitter);
 
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -122,8 +122,7 @@ public class TimelineActivity extends AppCompatActivity {
         floatingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(TimelineActivity.this, ComposeActivity.class);
-//                startActivityForResult(intent, REQUEST_CODE);
+
                 showEditDialog();
 
 
@@ -155,14 +154,12 @@ public class TimelineActivity extends AppCompatActivity {
         populateHomeTimeline();
     }
 
-    private <MyParentFragment> void showEditDialog() {
+    private void showEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
         ComposeDialogFragment editNameDialogFragment = ComposeDialogFragment.newInstance("Some Title");
         editNameDialogFragment.show(fm, "fragment_edit_name");
 
-//        // SETS the target fragment for use later when sending results
-//        editNameDialogFragment.setTargetFragment(MyParentFragment.this, 300);
-//        editNameDialogFragment.show(fm, "fragment_edit_name");
+
 
     }
 

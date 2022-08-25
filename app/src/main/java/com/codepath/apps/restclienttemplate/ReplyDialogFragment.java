@@ -24,7 +24,7 @@ import org.parceler.Parcels;
 import okhttp3.Headers;
 // ...
 
-public class ComposeDialogFragment extends DialogFragment {
+public class ReplyDialogFragment extends DialogFragment {
 
     private EditText mEditText;
     Button btnTweet;
@@ -34,14 +34,14 @@ public class ComposeDialogFragment extends DialogFragment {
 
     public static final int MAX_LINES = 140;
     public static final String TAG = "ComposeActivity";
-    public ComposeDialogFragment() {
+    public ReplyDialogFragment() {
         // Empty constructor is required for DialogFragment
         // Make sure not to add arguments to the constructor
         // Use `newInstance` instead as shown below
     }
 
-    public static ComposeDialogFragment newInstance(String title) {
-        ComposeDialogFragment frag = new ComposeDialogFragment();
+    public static ReplyDialogFragment newInstance(String title) {
+        ReplyDialogFragment frag = new ReplyDialogFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
         frag.setArguments(args);
