@@ -1,8 +1,12 @@
 package com.codepath.apps.restclienttemplate;
 
+import static android.content.Context.MODE_WORLD_WRITEABLE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +25,10 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONException;
 import org.parceler.Parcels;
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
 import okhttp3.Headers;
 // ...
@@ -72,12 +80,27 @@ public class ComposeDialogFragment extends DialogFragment {
         getDialog().setTitle(title);
         // Show soft keyboard automatically and request focus to field
         mEditText.requestFocus();
-        getDialog().getWindow().setLayout(1000, 1500);
+        getDialog().getWindow().setLayout(1100, 2200);
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        SharedPreferences pref =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        String username = pref.getString("username", "");
+
+        if(!username.isEmpty()){
+            mEditText.setText(username);
+        }
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String compose = mEditText.getText().toString();
+                SharedPreferences pref =
+                        PreferenceManager.getDefaultSharedPreferences(context);
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putString("username", compose);
+                edit.commit();
                 dismiss();
             }
         });

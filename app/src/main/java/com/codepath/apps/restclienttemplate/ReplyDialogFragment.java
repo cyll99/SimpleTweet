@@ -72,7 +72,7 @@ public class ReplyDialogFragment extends DialogFragment {
         getDialog().setTitle(title);
         // Show soft keyboard automatically and request focus to field
         mEditText.requestFocus();
-        getDialog().getWindow().setLayout(1000, 1500);
+        getDialog().getWindow().setLayout(1100, 2200);
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
