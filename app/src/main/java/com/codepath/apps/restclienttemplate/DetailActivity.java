@@ -118,11 +118,11 @@ public class DetailActivity extends AppCompatActivity {
 
 
         if (!tweet.tweeted) {
-            retweet_green.setVisibility(View.VISIBLE);
-            retweets.setVisibility(View.INVISIBLE);
-        } else {
-            retweet_green.setVisibility(View.INVISIBLE);
             retweets.setVisibility(View.VISIBLE);
+            retweet_green.setVisibility(View.INVISIBLE);
+        } else {
+            retweets.setVisibility(View.INVISIBLE);
+            retweet_green.setVisibility(View.VISIBLE);
         }
 
         comment.setOnClickListener(new View.OnClickListener() {
@@ -137,8 +137,9 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tweet.retweet_count++;
-
-                retweets.setText(tweet.getRetweet_count());
+                retweet_green.setVisibility(View.VISIBLE);
+                retweets.setVisibility(View.INVISIBLE);
+                retweet_green.setText(tweet.getRetweet_count());
                 retweet.setText(tweet.getRetweet_count() + " RETWEETS");
                 tweet.tweeted =true;
 
@@ -149,8 +150,9 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tweet.retweet_count--;
-
-                retweet_green.setText(tweet.getRetweet_count());
+                retweet_green.setVisibility(View.INVISIBLE);
+                retweets.setVisibility(View.VISIBLE);
+                retweets.setText(tweet.getRetweet_count());
                 retweet.setText(tweet.getRetweet_count() + " RETWEETS");
                 tweet.tweeted =false;
             }
