@@ -150,6 +150,10 @@ public class ComposeDialogFragment extends DialogFragment {
                             Intent intent = new Intent();
                             intent.putExtra("tweet", Parcels.wrap(tweet));
 
+                            // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
+                            EditListTweets listener = (EditListTweets) getTargetFragment();
+                            listener.onFinishEditDialog(tweet);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -167,7 +171,12 @@ public class ComposeDialogFragment extends DialogFragment {
             }
         });
 
+
     }
 
+    // 1. Defines the listener interface with a method passing back data result.
+    public interface EditListTweets {
+        void onFinishEditDialog(Tweet tweet);
+    }
 
     }

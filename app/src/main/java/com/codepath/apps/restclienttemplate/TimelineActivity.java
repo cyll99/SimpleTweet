@@ -36,7 +36,7 @@ import java.util.List;
 
 import okhttp3.Headers;
 
-public class TimelineActivity extends AppCompatActivity {
+public class TimelineActivity extends AppCompatActivity implements ComposeDialogFragment.EditListTweets {
     public static final String TAG="TimelineActivity";
     public static final int REQUEST_CODE=20;
 
@@ -258,5 +258,12 @@ public class TimelineActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onFinishEditDialog(Tweet tweet) {
+        tweets.add(0,tweet);
+        adapter.notifyItemInserted(0);
+        rvTweets.smoothScrollToPosition(0);
     }
 }

@@ -173,8 +173,17 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/comment"
 
-            app:drawableLeftCompat="@drawable/repeat_variant"
-            />
+            app:drawableLeftCompat="@drawable/repeat_variant" />
+        <TextView
+            android:id="@+id/reply2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider2"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/comment"
+
+            app:drawableLeftCompat="@drawable/repeat_green" />
 
 
         <TextView
@@ -232,14 +241,12 @@
             android:id="@+id/textField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/twitBleu"
             app:boxStrokeColor="@color/twitBleu"
             app:counterEnabled="true"
             app:counterMaxLength="140"
-            app:counterTextColor="@color/twitBleu"
-            app:hintTextColor="@color/twitBleu">
+            app:counterTextColor="@color/twitBleu">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
 
                 android:id="@+id/etCompose"
                 android:layout_width="match_parent"
@@ -250,10 +257,9 @@
                 android:layout_marginEnd="5dp"
                 android:ems="10"
                 android:gravity="bottom"
-                android:hint="@string/what_s_happening"
                 android:inputType="textMultiLine"
                 android:minLines="5"
-                android:textColorHint="@color/twitBleu" />
+                android:textColorHint="@color/gray" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
