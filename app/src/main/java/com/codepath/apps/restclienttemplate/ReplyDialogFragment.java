@@ -64,11 +64,11 @@ public class ReplyDialogFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         // Get field from view
 
-        Bundle bundle = new Bundle();
+        Bundle bundle = getArguments();
         Tweet tweet = Parcels.unwrap(bundle.getParcelable("tweets"));
 
 
-        mEditText = (EditText) view.findViewById(R.id.etCompose);
+        mEditText = view.findViewById(R.id.etCompose);
         btnTweet = view.findViewById(R.id.btnTweet);
         cancel = view.findViewById(R.id.btnCancel);
         textField = view.findViewById(R.id.textField);
@@ -84,7 +84,7 @@ public class ReplyDialogFragment extends DialogFragment {
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
-//        mEditText.setText(tweet.user.getScreenName()+" ");
+        mEditText.setText(tweet.user.getScreenName()+" ");
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +92,7 @@ public class ReplyDialogFragment extends DialogFragment {
             }
         });
 
-//        textField.setHint(tweet.user.getName());
+        textField.setHint("Reply to " + tweet.user.getScreenName());
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

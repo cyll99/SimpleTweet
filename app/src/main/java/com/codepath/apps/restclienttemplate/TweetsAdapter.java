@@ -101,7 +101,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
         RelativeLayout container;
-        Parcelable tweeet;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -156,7 +155,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    showEditDialog();
+                    showEditDialog(Parcels.wrap(tweet));
                 }
             });
 
@@ -198,7 +197,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     // 2 Navigate on new activity on tap
 
                     Intent i = new Intent(context, DetailActivity.class);
-                    tweeet = Parcels.wrap(tweet);
                     i.putExtra("tweets", Parcels.wrap(tweet));
 
 
@@ -243,10 +241,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             }
         }
 
-        private void showEditDialog() {
+        private void showEditDialog(Parcelable tweet) {
             Bundle bundle = new Bundle();
 
-            bundle.putParcelable("tweets", Parcels.wrap(tweeet));
+            bundle.putParcelable("tweets", tweet);
 
             FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
             ReplyDialogFragment editNameDialogFragment = ReplyDialogFragment.newInstance("Some Title");

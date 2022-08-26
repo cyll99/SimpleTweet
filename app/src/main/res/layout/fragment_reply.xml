@@ -73,17 +73,14 @@
             android:layout_below="@id/btnCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/twitBleu"
-            app:boxStrokeColor="@color/twitBleu"
+            android:textColorHint="@color/gray"
             app:counterEnabled="true"
             app:counterMaxLength="140"
             app:counterTextColor="@color/twitBleu"
-            android:hint="@string/what_s_happening"
-            app:hintAnimationEnabled="true"
 
-            app:hintTextColor="@color/twitBleu">
+            app:hintTextColor="@color/gray">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
 
                 android:id="@+id/etCompose"
                 android:layout_width="match_parent"
@@ -93,12 +90,12 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:ems="10"
-                android:gravity="bottom"
+
+                android:gravity="start"
                 android:inputType="textMultiLine"
-                android:hint="@string/what_s_happening"
 
                 android:minLines="5"
-                android:textColorHint="@color/twitBleu" />
+                android:textColorHint="@color/gray" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
