@@ -2,6 +2,8 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,7 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
-public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
+public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
     Context context;
     List<Tweet> tweets;
@@ -38,7 +40,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         this.context = context;
         this.tweets = tweets;
     }
-
 
 
     @NonNull
@@ -68,23 +69,22 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     public int getItemCount() {
         return tweets.size();
     }
+
     //Clean elements of recycler view
-    public void clear(){
+    public void clear() {
 
         tweets.clear();
         notifyDataSetChanged();
     }
 
-        // Add a list of items
-    public void addAll(List<Tweet> tweetList){
+    // Add a list of items
+    public void addAll(List<Tweet> tweetList) {
         tweets.addAll(tweetList);
         notifyDataSetChanged();
     }
 
 
-
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage;
         TextView tvbody;
@@ -101,6 +101,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
         RelativeLayout container;
+        Parcelable tweeet;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -132,10 +133,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             favoritesRed.setText(tweet.getFavorite_count());
 
-            if(!tweet.favorited){
+            if (!tweet.favorited) {
                 favorites.setVisibility(View.VISIBLE);
                 favoritesRed.setVisibility(View.INVISIBLE);
-            }else{
+            } else {
                 favorites.setVisibility(View.INVISIBLE);
                 favoritesRed.setVisibility(View.VISIBLE);
             }
@@ -145,12 +146,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     .transform(new RoundedCorners(70))
                     .into(ivProfileImage);
 
-            if(!tweet.entities.getDisplay_url().isEmpty()){
-            Glide.with(context).load(tweet.entities.getDisplay_url())
-                    .transform(new RoundedCorners(20))
-                    .into(image);}
-
-
+            if (!tweet.entities.getDisplay_url().isEmpty()) {
+                Glide.with(context).load(tweet.entities.getDisplay_url())
+                        .transform(new RoundedCorners(20))
+                        .into(image);
+            }
 
 
             comment.setOnClickListener(new View.OnClickListener() {
@@ -164,12 +164,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 @Override
                 public void onClick(View view) {
 
-                        tweet.favorite_count++;
-                        favorites.setVisibility(View.INVISIBLE);
-                        favoritesRed.setVisibility(View.VISIBLE);
-                        favoritesRed.setText(tweet.getFavorite_count());
-                        tweet.favorited = true;
-
+                    tweet.favorite_count++;
+                    favorites.setVisibility(View.INVISIBLE);
+                    favoritesRed.setVisibility(View.VISIBLE);
+                    favoritesRed.setText(tweet.getFavorite_count());
+                    tweet.favorited = true;
 
 
                 }
@@ -198,15 +197,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 public void onClick(View view) {
                     // 2 Navigate on new activity on tap
 
-                    Intent i =  new Intent(context, DetailActivity.class);
+                    Intent i = new Intent(context, DetailActivity.class);
+                    tweeet = Parcels.wrap(tweet);
                     i.putExtra("tweets", Parcels.wrap(tweet));
+
 
                     context.startActivity(i);
                 }
             });
 
 
-            if(!tweet.extendedEntities.url.isEmpty()){
+            if (!tweet.extendedEntities.url.isEmpty()) {
                 mVideoPlayer_1.setVisibility(View.VISIBLE);
                 VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
                     @Override
@@ -216,7 +217,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 });
 
 
-                mVideoPlayer_1.addMediaPlayerListener(new SimpleMainThreadMediaPlayerListener(){
+                mVideoPlayer_1.addMediaPlayerListener(new SimpleMainThreadMediaPlayerListener() {
                     @Override
                     public void onVideoPreparedMainThread() {
                         // We hide the cover when video is prepared. Playback is about to start
@@ -237,16 +238,23 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 });
 
 
-
-                  mVideoPlayerManager.playNewVideo(null, mVideoPlayer_1, tweet.extendedEntities.url);
+                mVideoPlayerManager.playNewVideo(null, mVideoPlayer_1, tweet.extendedEntities.url);
 
             }
         }
 
         private void showEditDialog() {
-            FragmentManager fm = ((FragmentActivity)context).getSupportFragmentManager();
+            Bundle bundle = new Bundle();
+
+            bundle.putParcelable("tweets", Parcels.wrap(tweeet));
+
+            FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
             ReplyDialogFragment editNameDialogFragment = ReplyDialogFragment.newInstance("Some Title");
+            editNameDialogFragment.setArguments(bundle);
+
             editNameDialogFragment.show(fm, "fragment_edit_name");
+
+
         }
 
 

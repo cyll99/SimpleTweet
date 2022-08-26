@@ -8,7 +8,6 @@ import java.util.List;
 public class TweetWithUser {
 
 
-
     @Embedded
     User user;
 
@@ -19,12 +18,12 @@ public class TweetWithUser {
     Tweet tweet;
 
 
-    public static List<Tweet> getTweetList(List<TweetWithUser> tweetWithUsers){
+    public static List<Tweet> getTweetList(List<TweetWithUser> tweetWithUsers) {
         List<Tweet> tweets = new ArrayList<>();
 
-        for(int i =0 ; i<tweetWithUsers.size(); i++){
+        for (int i = 0; i < tweetWithUsers.size(); i++) {
             Tweet tweet = tweetWithUsers.get(i).tweet;
-            tweet.user =  tweetWithUsers.get(i).user;
+            tweet.user = tweetWithUsers.get(i).user;
             tweet.entities = tweetWithUsers.get(i).entities;
             tweets.add(tweet);
         }

@@ -15,8 +15,9 @@ import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Parcel
-@Entity(foreignKeys = @ForeignKey(entity=User.class, parentColumns="id", childColumns="userId"))
+@Entity(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "userId"))
 
 public class Tweet {
     @ColumnInfo
@@ -29,7 +30,7 @@ public class Tweet {
     public User user;
 
     @ColumnInfo
-    public  long userId;
+    public long userId;
 
     @ColumnInfo
     public int retweet_count;
@@ -54,40 +55,8 @@ public class Tweet {
     public long id;
 //    public Organization url;
 
-    public String getBody() {
-        return body;
+    public Tweet() {
     }
-
-
-    public String getCreatedAt() {
-        return "."+TimeFormatter.getTimeDifference(createdAt);
-    }
-    public String getCreatedAt2() {
-        return "."+TimeFormatter.getTimeStamp(createdAt);
-    }
-
-
-    public User getUser() {
-        return user;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public Tweet(){}
-
-    public String getRetweet_count() {
-        return String.valueOf(retweet_count);
-    }
-
-    public String getFavorite_count() {
-        return String.valueOf( favorite_count);
-    }
-
-
-
-
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
@@ -108,10 +77,10 @@ public class Tweet {
         tweet.favorited = jsonObject.getBoolean("favorited");
 
 
-        if (jsonObject.has("extended_entities")){
+        if (jsonObject.has("extended_entities")) {
             tweet.extendedEntities = ExtendedEntities.fromJson(jsonObject.getJSONObject("extended_entities"));
 
-        }else{
+        } else {
             tweet.extendedEntities = new ExtendedEntities();
             tweet.extendedEntities.url = "";
             tweet.extendedEntities.type = "";
@@ -123,10 +92,38 @@ public class Tweet {
     public static List<Tweet> fromJsonArray(JSONArray jsonArray) throws JSONException {
         List<Tweet> tweets = new ArrayList<>();
 
-        for (int i = 0; i<jsonArray.length(); i++){
+        for (int i = 0; i < jsonArray.length(); i++) {
             tweets.add(fromJson(jsonArray.getJSONObject(i)));
         }
         return tweets;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getCreatedAt() {
+        return "." + TimeFormatter.getTimeDifference(createdAt);
+    }
+
+    public String getCreatedAt2() {
+        return "." + TimeFormatter.getTimeStamp(createdAt);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getRetweet_count() {
+        return String.valueOf(retweet_count);
+    }
+
+    public String getFavorite_count() {
+        return String.valueOf(favorite_count);
     }
 
 }

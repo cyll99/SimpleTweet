@@ -28,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class TimelineActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeContainer;
     EndlessRecyclerViewScrollListener scrollListener;
     TweetDao tweetDao;
+    public static User thisUser;
 
 
     @Override
@@ -153,10 +155,15 @@ public class TimelineActivity extends AppCompatActivity {
         });
         populateHomeTimeline();
     }
-
+    // Launch compose Fragment
     private void showEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
         ComposeDialogFragment editNameDialogFragment = ComposeDialogFragment.newInstance("Some Title");
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("profile", Parcels.wrap(thisUser));
+        editNameDialogFragment.setArguments(bundle);
+
         editNameDialogFragment.show(fm, "fragment_edit_name");
 
 
@@ -196,6 +203,23 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     private void populateHomeTimeline() {
+        client.getCredentials(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.i(TAG, "success crendentials" +json.toString());
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    thisUser = User.fromJson(jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+            }
+        });
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +37,9 @@ public class DetailActivity extends AppCompatActivity {
     private TextView time;
     TextView favoritesRed;
     private ImageView image;
+    TextView comment;
+    EditText compose;
+
 
 
 
@@ -58,6 +64,8 @@ public class DetailActivity extends AppCompatActivity {
         imageTweet = findViewById(R.id.imageTweet);
         UserName = findViewById(R.id.Name);
         screenName = findViewById(R.id.userName);
+        comment = findViewById(R.id.comment);
+        compose = findViewById(R.id.etCompose);
 
         body = findViewById(R.id.body);
         retweet = findViewById(R.id.retweet);
@@ -76,6 +84,8 @@ public class DetailActivity extends AppCompatActivity {
 
 
         body.setText(tweet.getBody());
+        compose.setText(tweet.user.getScreenName()+" ");
+        compose.setHint("Reply to "+tweet.user.getScreenName());
         UserName.setText(tweet.getUser().getName());
         screenName.setText(tweet.user.getScreenName());
         retweet.setText(tweet.getRetweet_count()+" RETWEETS");
@@ -94,6 +104,13 @@ public class DetailActivity extends AppCompatActivity {
             favorites.setVisibility(View.INVISIBLE);
             favoritesRed.setVisibility(View.VISIBLE);
         }
+        comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showEditDialog();
+            }
+        });
+
 
         retweets.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +176,11 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-
+    private void showEditDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        ReplyDialogFragment editNameDialogFragment = ReplyDialogFragment.newInstance("Some Title");
+        editNameDialogFragment.show(fm, "fragment_edit_name");
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
