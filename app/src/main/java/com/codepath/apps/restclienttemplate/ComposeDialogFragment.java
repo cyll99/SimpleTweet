@@ -1,6 +1,5 @@
 package com.codepath.apps.restclienttemplate;
 
-import static android.content.Context.MODE_WORLD_WRITEABLE;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,12 +32,9 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import org.json.JSONException;
 import org.parceler.Parcels;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
+
 
 import okhttp3.Headers;
-// ...
 
 public class ComposeDialogFragment extends DialogFragment {
 

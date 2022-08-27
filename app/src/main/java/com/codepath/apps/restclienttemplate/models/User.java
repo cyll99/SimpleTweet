@@ -73,7 +73,4 @@ public class User {
         return image;
     }
 
-    public String getProfileImageUrl() {
-        return profileImageUrl;
-    }
 }

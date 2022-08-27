@@ -2,70 +2,8 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e0403aeb5683203f1e63bcd858682476",
+    "identityHash": "105c68263bdf0574897b934fa4ae3d3c",
     "entities": [
-      {
-        "tableName": "SampleModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `body` TEXT, `createdAt` TEXT, `retweet_count` INTEGER NOT NULL, `favorite_count` INTEGER NOT NULL, `favorited` INTEGER NOT NULL, `retweeted` INTEGER NOT NULL)",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "body",
-            "columnName": "body",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "createdAt",
-            "columnName": "createdAt",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "retweet_count",
-            "columnName": "retweet_count",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "favorite_count",
-            "columnName": "favorite_count",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "favorited",
-            "columnName": "favorited",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "retweeted",
-            "columnName": "retweeted",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": true
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
       {
         "tableName": "Tweet",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`body` TEXT, `createdAt` TEXT, `userId` INTEGER NOT NULL, `retweet_count` INTEGER NOT NULL, `favorite_count` INTEGER NOT NULL, `tweeted` INTEGER NOT NULL, `favorited` INTEGER NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`userId`) REFERENCES `User`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
@@ -226,7 +164,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e0403aeb5683203f1e63bcd858682476')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '105c68263bdf0574897b934fa4ae3d3c')"
     ]
   }
 }

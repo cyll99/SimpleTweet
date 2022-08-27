@@ -29,7 +29,6 @@ import org.json.JSONException;
 import org.parceler.Parcels;
 
 import okhttp3.Headers;
-// ...
 
 public class ReplyDialogFragment extends DialogFragment {
 
@@ -49,8 +48,7 @@ public class ReplyDialogFragment extends DialogFragment {
 
     public ReplyDialogFragment() {
         // Empty constructor is required for DialogFragment
-        // Make sure not to add arguments to the constructor
-        // Use `newInstance` instead as shown below
+
     }
 
     public static ReplyDialogFragment newInstance(String title) {
