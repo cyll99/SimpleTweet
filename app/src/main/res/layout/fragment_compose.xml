@@ -77,7 +77,6 @@
         app:counterEnabled="true"
         app:counterMaxLength="140"
         app:counterTextColor="@color/twitBleu"
-        android:hint="@string/what_s_happening"
         app:hintAnimationEnabled="true"
 
         app:hintTextColor="@color/twitBleu">
