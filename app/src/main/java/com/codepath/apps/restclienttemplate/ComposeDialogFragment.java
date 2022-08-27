@@ -48,7 +48,7 @@ public class ComposeDialogFragment extends DialogFragment {
     ImageView profile;
 
 
-    public static final int MAX_LINES = 140;
+    public static final int MAX_LINES = 280;
     public static final String TAG = "ComposeActivity";
     public static final String KEY = "BROUILLON";
 
@@ -101,17 +101,17 @@ public class ComposeDialogFragment extends DialogFragment {
         String title = getArguments().getString("title", "Enter Name");
         getDialog().setTitle(title);
         // Show soft keyboard automatically and request focus to field
-        getDialog().getWindow().setLayout(600, 2200);
+        getDialog().getWindow().setLayout(650, 2200);
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
 
-
+        // Saving draft...
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String username = pref.getString(KEY, "");
+        String draft = pref.getString(KEY, "");
 
-        if(!username.isEmpty()){
-            mEditText.setText(username);
+        if(!draft.isEmpty()){
+            mEditText.setText(draft);
         }
 
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +166,7 @@ public class ComposeDialogFragment extends DialogFragment {
 
 
     }
-
+    // Open pop up
     public void open(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Save draft?");
@@ -188,6 +188,8 @@ public class ComposeDialogFragment extends DialogFragment {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
+    // Save draft
 
     private void save(){
         String compose = mEditText.getText().toString();

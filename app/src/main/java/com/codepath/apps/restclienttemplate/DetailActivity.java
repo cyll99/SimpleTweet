@@ -84,6 +84,7 @@ public class DetailActivity extends AppCompatActivity {
 
         favoritesRed = findViewById(R.id.heart_red);
 
+        client = TwitterApp.getRestClient(this);
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweets"));
 
@@ -124,12 +125,12 @@ public class DetailActivity extends AppCompatActivity {
                         try {
                             Tweet tweet = Tweet.fromJson(json.jsonObject);
                             Log.i("tweet", tweet.body);
-                            Toast.makeText(DetailActivity.this, "Tweeted", Toast.LENGTH_LONG).show();
+
+
 
                             compose.setHint("Reply to " + tweet.user.getName());
 
 
-                            // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
 
 
                         } catch (JSONException e) {

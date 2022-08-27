@@ -43,7 +43,7 @@ public class ReplyDialogFragment extends DialogFragment {
     ImageView profile;
 
 
-    public static final int MAX_LINES = 140;
+    public static final int MAX_LINES = 280;
     public static final String TAG = "ComposeActivity";
 
     public ReplyDialogFragment() {
@@ -98,7 +98,7 @@ public class ReplyDialogFragment extends DialogFragment {
         getDialog().setTitle(title);
         // Show soft keyboard automatically and request focus to field
         mEditText.requestFocus();
-        getDialog().getWindow().setLayout(600, 2200);
+        getDialog().getWindow().setLayout(650, 2200);
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
