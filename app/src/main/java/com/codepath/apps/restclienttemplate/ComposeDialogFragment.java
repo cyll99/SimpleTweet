@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate;
 import static android.content.Context.MODE_WORLD_WRITEABLE;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.bumptech.glide.Glide;
@@ -119,12 +121,7 @@ public class ComposeDialogFragment extends DialogFragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String compose = mEditText.getText().toString();
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-                SharedPreferences.Editor edit = pref.edit();
-                edit.putString(KEY, compose);
-                edit.commit();
-                dismiss();
+                open();
             }
         });
 
@@ -172,6 +169,37 @@ public class ComposeDialogFragment extends DialogFragment {
         });
 
 
+    }
+
+    public void open(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage("Save draft?");
+        alertDialogBuilder.setPositiveButton("Save",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        save();
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Delete",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void save(){
+        String compose = mEditText.getText().toString();
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putString(KEY, compose);
+        edit.commit();
+        dismiss();
     }
 
     // 1. Defines the listener interface with a method passing back data result.

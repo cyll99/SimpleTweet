@@ -1,6 +1,5 @@
 package com.codepath.apps.restclienttemplate.models;
 
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -35,34 +34,15 @@ public class User {
     public String image;
 
 
-    public User(){}
+    public User() {
+    }
 
     public static List<User> fromJsonTweetArray(List<Tweet> tweetFromNetwork) {
-        List<User> users= new ArrayList<>();
-        for(int i = 0; i< tweetFromNetwork.size(); i++){
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i < tweetFromNetwork.size(); i++) {
             users.add(tweetFromNetwork.get(i).user);
         }
         return users;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getScreenName() {
-        return "@"+screenName;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public String getProfileImageUrl() {
-        return profileImageUrl;
     }
 
     public static User fromJson(JSONObject jsonObject) throws JSONException {
@@ -78,5 +58,22 @@ public class User {
 
         return user;
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getScreenName() {
+        return "@" + screenName;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 }
