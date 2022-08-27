@@ -107,6 +107,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView date;
         TextView favorites;
         TextView retweets;
+        TextView retweet_green;
         TextView favoritesRed;
         TextView comment;
         ImageView image;
@@ -130,6 +131,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             date = itemView.findViewById(R.id.Date);
             favorites = itemView.findViewById(R.id.heart);
             retweets = itemView.findViewById(R.id.reply);
+            retweet_green = itemView.findViewById(R.id.reply2);
             image = itemView.findViewById(R.id.image);
             comment = itemView.findViewById(R.id.comment);
 
@@ -157,6 +159,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 favoritesRed.setVisibility(View.VISIBLE);
             }
 
+            if (!tweet.tweeted) {
+                retweets.setVisibility(View.VISIBLE);
+                retweet_green.setVisibility(View.INVISIBLE);
+            } else {
+                retweets.setVisibility(View.INVISIBLE);
+                retweet_green.setVisibility(View.VISIBLE);
+            }
 
             Glide.with(context).load(tweet.user.profileImageUrl)
                     .transform(new RoundedCorners(70))
@@ -169,6 +178,28 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             }
 
 
+            retweets.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tweet.retweet_count++;
+                    retweet_green.setVisibility(View.VISIBLE);
+                    retweets.setVisibility(View.INVISIBLE);
+                    retweet_green.setText(tweet.getRetweet_count());
+                    tweet.tweeted =true;
+
+                }
+            });
+
+            retweet_green.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tweet.retweet_count--;
+                    retweet_green.setVisibility(View.INVISIBLE);
+                    retweets.setVisibility(View.VISIBLE);
+                    retweets.setText(tweet.getRetweet_count());
+                    tweet.tweeted =false;
+                }
+            });
             comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -130,6 +130,18 @@
         app:drawableLeftCompat="@drawable/repeat_variant"
         tools:text="5" />
 
+    <TextView
+        android:id="@+id/reply2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/comment"
+        android:drawablePadding="5dp"
+        app:drawableLeftCompat="@drawable/repeat_green"
+        tools:text="5" />
+
 
     <TextView
         android:id="@+id/heart"

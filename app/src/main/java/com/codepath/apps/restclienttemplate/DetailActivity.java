@@ -212,6 +212,8 @@ public class DetailActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
 
         bundle.putParcelable("tweets", tweet);
+        bundle.putParcelable("profile", Parcels.wrap(TimelineActivity.thisUser));
+
 
         FragmentManager fm = getSupportFragmentManager();
         ReplyDialogFragment editNameDialogFragment = ReplyDialogFragment.newInstance("Some Title");
