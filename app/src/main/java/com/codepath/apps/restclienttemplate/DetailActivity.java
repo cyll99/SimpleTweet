@@ -3,12 +3,14 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +20,12 @@ import androidx.fragment.app.FragmentManager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
+import org.json.JSONException;
 import org.parceler.Parcels;
+
+import okhttp3.Headers;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -38,6 +44,9 @@ public class DetailActivity extends AppCompatActivity {
     TextView favorites;
     TextView time;
     ImageView image;
+    public static final int MAX_LINES = 140;
+    TwitterClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,14 +92,9 @@ public class DetailActivity extends AppCompatActivity {
         compose.setHint("Reply to " + tweet.user.getName());
 
         // reply to tweet with the edit text at the bottom
-        compose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                compose.setText(tweet.user.getScreenName() + " ");
 
+        compose.setText(tweet.user.getScreenName() + " ");
 
-            }
-        });
         UserName.setText(tweet.getUser().getName());
         screenName.setText(tweet.user.getScreenName());
         retweet.setText(tweet.getRetweet_count() + " RETWEETS");
@@ -105,9 +109,44 @@ public class DetailActivity extends AppCompatActivity {
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showEditDialog(Parcels.wrap(tweet));
+                String tweetContent = compose.getText().toString();
+                if (tweetContent.isEmpty()) {
+                    Toast.makeText(DetailActivity.this, "Sorry your tweet cannot be empty", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (tweetContent.length() > MAX_LINES) {
+                    Toast.makeText(DetailActivity.this, "Sorry your tweet is too long", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Headers headers, JSON json) {
+                        try {
+                            Tweet tweet = Tweet.fromJson(json.jsonObject);
+                            Log.i("tweet", tweet.body);
+                            Toast.makeText(DetailActivity.this, "Tweeted", Toast.LENGTH_LONG).show();
+
+                            compose.setHint("Reply to " + tweet.user.getName());
+
+
+                            // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+                    }
+                });
+
             }
         });
+
 
         if (!tweet.favorited) {
             favorites.setVisibility(View.VISIBLE);
