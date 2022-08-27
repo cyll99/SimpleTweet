@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.codepath.oauth.OAuthBaseClient;
 import com.volokh.danylo.video_player_manager.manager.PlayerItemChangeListener;
 import com.volokh.danylo.video_player_manager.manager.SingleVideoPlayerManager;
 import com.volokh.danylo.video_player_manager.manager.VideoPlayerManager;
@@ -26,14 +30,20 @@ import com.volokh.danylo.video_player_manager.meta.MetaData;
 import com.volokh.danylo.video_player_manager.ui.SimpleMainThreadMediaPlayerListener;
 import com.volokh.danylo.video_player_manager.ui.VideoPlayerView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.util.List;
+
+import okhttp3.Headers;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
     Context context;
     List<Tweet> tweets;
+
+
     // Pass in context list of tweets
 
     public TweetsAdapter(Context context, List<Tweet> tweets) {
@@ -46,6 +56,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_tweet, parent, false);
+
+
+
+
 
         return new ViewHolder(view);
     }
@@ -101,6 +115,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
         RelativeLayout container;
+
+
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -240,11 +257,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             }
         }
-
+    // passing data about tweet and profile to the fragment
         private void showEditDialog(Parcelable tweet) {
             Bundle bundle = new Bundle();
 
             bundle.putParcelable("tweets", tweet);
+            bundle.putParcelable("profile", Parcels.wrap(TimelineActivity.thisUser));
+
 
             FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
             ReplyDialogFragment editNameDialogFragment = ReplyDialogFragment.newInstance("Some Title");

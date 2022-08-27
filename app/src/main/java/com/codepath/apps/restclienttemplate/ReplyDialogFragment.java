@@ -11,12 +11,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -34,6 +39,9 @@ public class ReplyDialogFragment extends DialogFragment {
     Context context;
     ImageButton cancel;
     TextInputLayout textField;
+    TextView name;
+    TextView username;
+    ImageView profile;
 
 
     public static final int MAX_LINES = 140;
@@ -66,6 +74,8 @@ public class ReplyDialogFragment extends DialogFragment {
 
         Bundle bundle = getArguments();
         Tweet tweet = Parcels.unwrap(bundle.getParcelable("tweets"));
+        User thisUser = Parcels.unwrap(bundle.getParcelable("profile"));
+
 
 
         mEditText = view.findViewById(R.id.etCompose);
@@ -73,7 +83,17 @@ public class ReplyDialogFragment extends DialogFragment {
         cancel = view.findViewById(R.id.btnCancel);
         textField = view.findViewById(R.id.textField);
         client = TwitterApp.getRestClient(context);
+        name = view.findViewById(R.id.name);
+        username = view.findViewById(R.id.username);
+        profile = view.findViewById(R.id.profile);
 
+
+        name.setText(thisUser.name);
+        username.setText(thisUser.screenName);
+
+        Glide.with(getContext()).load(thisUser.profileImageUrl)
+                .transform(new RoundedCorners(70))
+                .into(profile);
 
         // Fetch arguments from bundle and set title
         String title = getArguments().getString("title", "Enter Name");
