@@ -128,7 +128,9 @@ public class DetailActivity extends AppCompatActivity {
 
 
 
-                            compose.setHint("Reply to " + tweet.user.getName());
+                            compose.setHint("Reply");
+                            compose.setText("");
+                            Toast.makeText(DetailActivity.this, "Tweeted", Toast.LENGTH_LONG).show();
 
 
 
